@@ -1,0 +1,27 @@
+{
+  "name": "function-executor",
+  "version": "0.1.1",
+  "description": "Used to store functions that can be executed with same arguments with one call.",
+  "main": "lib/index.js",
+  "repository": "https://github.com/letumfalx/function-executor.git",
+  "author": "letum.falx <letum.falx@gmail.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "@babel/cli": "^7.4.3",
+    "@babel/core": "^7.4.3",
+    "@babel/preset-env": "^7.4.3",
+    "@types/jest": "^24.0.11",
+    "babel-eslint": "^10.0.1",
+    "babel-jest": "^24.7.1",
+    "eslint": "^5.16.0",
+    "husky": "^1.3.1",
+    "jest": "^24.7.1"
+  },
+  "scripts": {
+    "prebabelify": "rimraf lib",
+    "babelify": "babel src --out-dir lib --copy-files",
+    "pretest": "jest --clearCache",
+    "test": "jest --coverage --logHeapUsage --verbose",
+    "lint": "eslint src/** --fix"
+  }
+}
