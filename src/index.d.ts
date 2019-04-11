@@ -3,15 +3,10 @@ declare class FunctionExecutor {
 
   /**
    * Creates an instance of Function Executor.
-   */
-  constructor();
-
-  /**
-   * Creates an instance of Function Executor.
    * @param stopOnError determines if the execution will stop when 
    *                    encountered an error or not
    */
-  constructor(stopOnError: Boolean);
+  constructor(stopOnError?: Boolean);
 
   /**
    * Determines if the execution will stop if encountered an error.
