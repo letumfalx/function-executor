@@ -8,6 +8,10 @@ describe("Function Executor", () => {
       expect(() => new FunctionExecutor()).not.toThrowError();
     });
 
+    it("should throw an error if directly called", () => {
+      expect(() => FunctionExecutor()).toThrowError();
+    });
+
     it("should set stopOnError to true if no argument is passed", () => {
       expect(new FunctionExecutor().stopOnError).toBeTruthy();
     });
