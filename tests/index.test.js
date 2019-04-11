@@ -102,13 +102,13 @@ describe("Function Executor", () => {
       });
 
       it("should return false if function is not yet added", () => {
-        expect(fexec.contains(fn)).toBeFalsy();
+        expect(fexec.contains(() => {})).toBeFalsy();
       });
 
       it("should return false if argument is not a function", () => {
         expect(fexec.contains(0)).toBeFalsy();
         expect(fexec.contains("string")).toBeFalsy();
-        expect(fexec.addcontains({})).toBeFalsy();
+        expect(fexec.contains({})).toBeFalsy();
         expect(fexec.contains(null)).toBeFalsy();
         expect(fexec.contains(void 0)).toBeFalsy();
         expect(fexec.contains(false)).toBeFalsy();
