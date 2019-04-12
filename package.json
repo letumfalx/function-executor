@@ -2,10 +2,26 @@
   "name": "function-executor",
   "version": "0.1.1",
   "description": "Used to store functions that can be executed with same arguments with one call.",
-  "main": "lib/index.js",
-  "repository": "https://github.com/letumfalx/function-executor.git",
-  "author": "letum.falx <letum.falx@gmail.com>",
+  "main": "./lib/index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/letumfalx/function-executor.git"
+  },
+  "author": "Darwin Arandilla <dletumfalx@gmail.com>",
   "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/letumfalx/function-executor/issues"
+  },
+  "homepage": "https://github.com/letumfalx/function-executor#readme",
+  "files": [
+    "lib",
+    "src"
+  ],
+  "keywords": [
+    "javascript",
+    "function",
+    "executor"
+  ],
   "devDependencies": {
     "@babel/cli": "^7.4.3",
     "@babel/core": "^7.4.3",
@@ -18,10 +34,11 @@
     "jest": "^24.7.1"
   },
   "scripts": {
-    "prebabelify": "rimraf lib",
-    "babelify": "babel src --out-dir lib --copy-files",
-    "pretest": "jest --clearCache",
-    "test": "jest --coverage --logHeapUsage --verbose",
-    "lint": "eslint src/** --fix"
+    "prebuild": "rimraf lib",
+    "build": "babel src --out-dir lib --copy-files",
+    "lint": "eslint src/** --fix",
+    "pretest": "yarn run lint",
+    "test": "jest --clearCache&jest --coverage --logHeapUsage --verbose",
+    "prepublish": "yarn run test&yarn run build"
   }
 }
