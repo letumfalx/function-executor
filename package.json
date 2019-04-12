@@ -1,5 +1,5 @@
 {
-  "name": "function-executor",
+  "name": "@letumfalx/function-executor",
   "version": "0.1.1",
   "description": "Used to store functions that can be executed with same arguments with one call.",
   "main": "./lib/index.js",
