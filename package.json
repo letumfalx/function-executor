@@ -37,8 +37,8 @@
     "prebuild": "rimraf lib",
     "build": "babel src --out-dir lib --copy-files",
     "lint": "eslint src/** --fix",
-    "pretest": "yarn run lint",
-    "test": "jest --clearCache&jest --coverage --logHeapUsage --verbose",
-    "prepublish": "yarn run test&yarn run build"
+    "pretest": "jest --clearCache",
+    "test": "jest --coverage --logHeapUsage --verbose --runInBand",
+    "prepublish": "yarn run lint&yarn run test&yarn run build"
   }
 }
