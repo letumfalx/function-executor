@@ -86,24 +86,26 @@ const errors = fexec.execute('Hello');
 // OUTPUTS: [Error]
 console.log(errors);
 
+// we can also set the stopOnError on creation by passing it on the constructor
+const fexec3 = new FunctionExecutor(false);
 
+// if we want to check if function is already in the list, we can do it by passing the function to its contains method
+// OUTPUTS: false
+console.log(fexec.contains(fn1));
 
+fexec.add(fn1);
 
+// OUTPUTS: true
+console.log(fexec.contains(fn1));
 
+```
 
+## Tests
 
+```
+yarn test
+```
 
+## Contributing
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+In lieu of a formal style guide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint and test your code.
