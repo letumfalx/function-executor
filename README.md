@@ -21,85 +21,138 @@ Used to store functions that can be executed with same arguments with one call.
    
 ## Usage
 
+**Creates an instance:**
 ```js
-import FunctionExecutor from '@letumfalx/function-executor';
-
-
-const fn1 = str => console.log(`FN1: ${str}`);
-const fn2 = str => console.log(`FN2: ${str}`);
-
 const fexec = new FunctionExecutor();
+```
 
-// adds a function 
+Adds a function:
+```js
+const fn = function() {};
+
+// this will return true
+fexec.add(fn);
+
+// adding non-function will return false
+fexec.add("not a function");
+
+// adding already added function will also return false
+fexec.add(fn);
+```
+
+**Removing a function:**
+```js
+const fn = function() {};
+
+// we must add first a function
+fexec.add(fn);
+
+// removing added function will return true
+fexec.remove(fn);
+
+// removing already removed or not yet added function will return false
+fexec.remove(fn);
+fexec.remove(function() {});
+
+// removing non-function will also return false
+fexec.remove("not a function");
+```
+
+**Checking if function already in the list:**
+```js
+const fn = function() {};
+
+fexec.add(fn);
+
+// this will return true as the function is already added
+fexec.contains(fn);
+
+// this will return false as the function is not yet added
+fexec.contains(function() {});
+
+fexec.remove(fn);
+
+// this will return false as the function is already removed
+fexec.contains(fn);
+
+// checking non-function always return false
+fexec.contains("not a function");
+```
+
+**Setting stopOnError:**
+```js
+
+// by default stopOnError is true on creation
+let fexec = new FunctionExecutor();
+console.log(fexec.stopOnError); // OUTPUTS: true
+
+// you can also pass a boolean to the constructor to set the stopOnError
+fexec = new FunctionExecutor(false);
+console.log(fexec.stopOnError); // OUTPUTS: false
+
+// you can also change it directly if you like it
+fexec.stopOnError = false;
+```
+
+**Executing the functions:**
+```
+const fn1 = function(args1) {
+  console.log(args1);
+};
+
+const fn2 = function(args1, args2) {
+  console.log(args1 + " " + args2);
+};
+
+// creating and adding functions
+const fexec = new FunctionExecutor();
 fexec.add(fn1);
+fexec.add(fn2);
 
-// succesful addition of function returns true
-// OUTPUTS: true
-console.log(fexec.add(fn2));
+// you can execute the added functions
+// NOTE: you can pass as many arguments as you want
+fexec.execute("1", "2");
 
-// adding already added function will fail and returns false
-// OUTPUTS: false
-console.log(fexec.add(fn1));
-
-// executes the function inside fexec with argument 'Hello'
-// this will execute the added functions sequentially
 // OUTPUTS:
-// > FN1: Hello
-// > FN2: Hello
-fexec.execute('Hello');
+// > 1
+// > 1 2
 
-// removes a function successfully will return true
-// OUTPUTS: true
-console.log(fexec.remove(fn2));
+const fn3 = function(args1, args2, args3) {
+  throw new Error("Error has occured");
+};
 
-// removing functions that are not added or already removed will fail and returns false
-// OUTPUTS: false
-console.log(fexec.remove(fn2));
-
-// also removed functions will not be executed
-// OUTPUTS:
-// > FN1: Hello
-fexec.execute('Hello');
-
-// By default, if ever an error encountered, the execution will canceled and throws the error
 const fexec2 = new FunctionExecutor();
-
-const fn3 = () => { throw new Error('Encountered Error') };
 fexec2.add(fn1);
 fexec2.add(fn3);
 fexec2.add(fn2);
 
-// NOTE: any functions that was added after the error function will not execute
-// OUTPUTS:
-// > FN1: Hello
-// > Error: Encountered Error
-// > (...stacktrace)
-fexec2.execute('Hello');
+// executing the function with stopOnError to true and has encountered an 
+// error will stop the execution on the errored function and throws the error
 
-// to give all the functions a chance to execute, we will set the stopOnError to false
+fexec2.execute(1, 2, 3);
+
+// OUTPUTS:
+// > 1
+// > Error: Error has occured
+// > (stacktrace here)
+
+// we can set stopOnError to false to give chance to others to be executed
+// this will make execute returns the array of errors it encountered
 fexec2.stopOnError = false;
+let errors = fexec2.execute(1, 2, 3);
 
 // OUTPUTS:
-// > FN1: Hello
-// > FN2: Hello
-const errors = fexec2.execute('Hello');
+// > 1
+// > 1 2
 
-// if ever there are errors encountered, execute will return an array of errors instead of undefined
-// OUTPUTS: [Error]
-console.log(errors);
+console.log(errors); // OUTPUTS: [Error]
 
-// we can also set the stopOnError on creation by passing it on the constructor
-const fexec3 = new FunctionExecutor(false);
+// NOTE: if stopOnError is set to false and no error encountered, execute will return undefined not an 
+// empty array
 
-// if we want to check if function is already in the list, we can do it by passing the function to its contains method
-// OUTPUTS: false
-console.log(fexec3.contains(fn1));
-
-fexec3.add(fn1);
-
-// OUTPUTS: true
-console.log(fexec3.contains(fn1));
-
+fexec2.remove(fn3);
+errors = fexec2.execute(1, 2, 3);
+console.log(errors); // OUTPUTS: undefined
 ```
 
 ## Tests
@@ -111,3 +164,4 @@ yarn test
 ## Contributing
 
 In lieu of a formal style guide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint and test your code.
+
