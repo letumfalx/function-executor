@@ -1,24 +1,5 @@
-Function Executor
-=========
-
-Used to store functions that can be executed with same arguments with one call.
-
-
-## Installation
-
-**Using npm:**
-
-    `npm install @letumfalx/function-executor`
-    
-**Using yarn:**
-
-    `yarn add @letumfalx/function-executor`
-    
-   
-## Usage
-
-```js
-import FunctionExecutor from '@letumfalx/function-executor';
+// import FunctionExecutor from '@letumfalx/function-executor';
+const FunctionExecutor = require("./lib").default;
 
 
 const fn1 = str => console.log(`FN1: ${str}`);
@@ -70,7 +51,7 @@ fexec2.add(fn2);
 // > FN1: Hello
 // > Error: Encountered Error
 // > (...stacktrace)
-fexec2.execute('Hello');
+// fexec2.execute('Hello');
 
 // to give all the functions a chance to execute, we will set the stopOnError to false
 fexec2.stopOnError = false;
@@ -90,20 +71,3 @@ const fexec3 = new FunctionExecutor(false);
 // if we want to check if function is already in the list, we can do it by passing the function to its contains method
 // OUTPUTS: false
 console.log(fexec3.contains(fn1));
-
-fexec3.add(fn1);
-
-// OUTPUTS: true
-console.log(fexec3.contains(fn1));
-
-```
-
-## Tests
-
-```
-yarn test
-```
-
-## Contributing
-
-In lieu of a formal style guide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint and test your code.
