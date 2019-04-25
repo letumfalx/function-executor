@@ -34,6 +34,11 @@ declare class FunctionExecutor {
   contains(func: Function): Boolean;
 
   /**
+   * Removes all functions on the list.
+   */
+  clear(): void;
+
+  /**
    * Executes all the function. If stopOnError is true, this will 
    * throw the first encountered error and doesn't execute the remaining 
    * functions, else will execute all the functions and put all errors on 

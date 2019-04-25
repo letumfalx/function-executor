@@ -312,6 +312,18 @@ describe("Function Executor", () => {
 
     });
 
+    describe("clearing the list", () => {
+      it("should removes all the function on list", () => {
+        const fn1 = () => {};
+        const fn2 = () => {};
+        fexec.add(fn1);
+        fexec.add(fn2);
+        fexec.clear();
+        expect(fexec.contains(fn1)).toBeFalsy();
+        expect(fexec.contains(fn2)).toBeFalsy();
+      });
+    });
+
   });
 
   describe("properties testing", () => {

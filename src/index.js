@@ -55,6 +55,8 @@ class FunctionExecutor {
       return false;
     };
 
+    this.clear = () => _list.splice(0);
+
     this.stopOnError = stopOnError;
 
   }
