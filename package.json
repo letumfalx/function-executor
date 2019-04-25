@@ -38,11 +38,11 @@
     "prebuild": "rimraf lib",
     "build": "babel src --out-dir lib --copy-files",
     "lint": "eslint src/** --fix",
-    "pretest": "jest --clearCache",
-    "test": "jest --verbose --runInBand",
-    "precoveralls": "jest --coverage",
+    "pretest": "jest --clearCache&rimraf \"./coverage\"",
+    "test": "jest --verbose --runInBand --coverage --logHeapUsage",
+    "precoveralls": "yarn test",
     "coveralls": "cat \"./coverage/lcov.info\" | \"./node_modules/coveralls/bin/coveralls.js\"",
-    "postcoveralls": "rimraf \"./coveralls\"",
+    "postcoveralls": "rimraf \"./coverage\"",
     "prepublish": "yarn run lint&yarn run test&yarn run build"
   }
 }
