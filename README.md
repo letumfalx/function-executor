@@ -139,20 +139,33 @@ fexec2.execute(1, 2, 3);
 // we can set stopOnError to false to give chance to others to be executed
 // this will make execute returns the array of errors it encountered
 fexec2.stopOnError = false;
-let errors = fexec2.execute(1, 2, 3);
+fexec2.execute(1, 2, 3); // returns: [Error]
 
 // OUTPUTS:
 // > 1
 // > 1 2
 
-console.log(errors); // OUTPUTS: [Error]
-
-// NOTE: if stopOnError is set to false and no error encountered, execute will return undefined not an 
-// empty array
+// NOTE: if stopOnError is set to false and no error encountered, execute will return undefined not an empty array
 
 fexec2.remove(fn3);
-errors = fexec2.execute(1, 2, 3);
-console.log(errors); // OUTPUTS: undefined
+fexec2.execute(1, 2, 3); // returns: undefined
+```
+
+**Clearing the list:**
+
+```js
+const fn1 = function() {};
+const fn2 = function() {};
+
+const fexec = new FunctionExecutor();
+fexec.add(fn1);
+fexec.add(fn2);
+
+// you can remove all functions from the list
+fexec.clear();
+
+fexec.contains(fn1);	// returns: false
+fexec.contains(fn2);	// returns: false
 ```
 
 ## Tests
