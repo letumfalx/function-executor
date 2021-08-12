@@ -14,8 +14,7 @@
   },
   "homepage": "https://github.com/letumfalx/function-executor#readme",
   "files": [
-    "lib",
-    "src"
+    "lib"
   ],
   "keywords": [
     "javascript",
