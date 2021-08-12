@@ -5,7 +5,6 @@ node_js:
 branches:
   only:
   - master
-  - feature/v1.0-alpha
 cache:
   directories:
   - node_modules
