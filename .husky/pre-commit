@@ -1,0 +1,3 @@
+#!/bin/sh
+
+npm run eslint || { exit 1; };

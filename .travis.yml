@@ -5,13 +5,7 @@ node_js:
 branches:
   only:
   - master
+  - feature/v1.0-alpha
 cache:
   directories:
   - node_modules
-before_install:
-- yarn upgrade
-install:
-- yarn install
-script:
-- yarn run lint
-- yarn coveralls

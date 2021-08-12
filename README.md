@@ -13,12 +13,12 @@ Used to store functions that can be executed with same arguments with one call.
 **Using npm:**
 
     `npm install @letumfalx/function-executor`
-    
+
 **Using yarn:**
 
     `yarn add @letumfalx/function-executor`
-    
-   
+
+
 ## Usage
 
 **Creates an instance:**
@@ -126,7 +126,7 @@ fexec2.add(fn1);
 fexec2.add(fn3);
 fexec2.add(fn2);
 
-// executing the function with stopOnError to true and has encountered an 
+// executing the function with stopOnError to true and has encountered an
 // error will stop the execution on the errored function and throws the error
 
 fexec2.execute(1, 2, 3);
@@ -171,7 +171,7 @@ fexec.contains(fn2);	// returns: false
 ## Tests
 
 ```
-yarn test
+npm run test
 ```
 
 ## Contributing
