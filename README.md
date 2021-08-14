@@ -1,7 +1,7 @@
 Function Executor
 =========
 
-[![Build Status](https://travis-ci.org/letumfalx/function-executor.svg?branch=master)](https://travis-ci.org/letumfalx/function-executor)
+[![Build Status](https://travis-ci.com/letumfalx/function-executor.svg?branch=master)](https://travis-ci.com/letumfalx/function-executor)
 [![Coverage Status](https://coveralls.io/repos/github/letumfalx/function-executor/badge.svg?branch=master)](https://coveralls.io/github/letumfalx/function-executor?branch=master)
 
 
